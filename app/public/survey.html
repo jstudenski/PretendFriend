@@ -35,54 +35,43 @@ Then find the friend with the greatest compatibility! -->
 
 <section class="section">
 
-    <div class="container">
-      <h1 class="title">Section</h1>
-      <h2 class="subtitle">
-        A simple container to divide your page into <strong>sections</strong>, like the one you're currently reading
-      </h2>
+  <div class="container">
+    <h1 class="title">Section</h1>
+    <h2 class="subtitle">
+      A simple container to divide your page into <strong>sections</strong>, like the one you're currently reading
+    </h2>
+  </div>
+
+  <div class="field">
+    <label class="label">Name</label>
+    <div class="control">
+      <input class="input" type="text" placeholder="Text input" id="inputName">
     </div>
-
-<div class="field">
-  <label class="label">Name</label>
-  <div class="control">
-    <input class="input" type="text" placeholder="Text input" id="inputName">
   </div>
-</div>
 
-<div class="field">
-  <label class="label">Image URL</label>
-  <div class="control">
-    <input class="input" type="text" placeholder="Text input" id="inputImage">
+  <div class="field">
+    <label class="label">Image URL</label>
+    <div class="control">
+      <input class="input" type="text" placeholder="Text input" id="inputImage">
+    </div>
   </div>
-</div>
 
-<div class="field">
-  <label class="label">Question 1</label>
-  <div class="control" id="inputQuestion">
-    <label class="radio"><input type="radio" name="foobar">1</label>
-    <label class="radio"><input type="radio" name="foobar">2</label>
-    <label class="radio"><input type="radio" name="foobar" checked>3</label>
-    <label class="radio"><input type="radio" name="foobar">4</label>
-    <label class="radio"><input type="radio" name="foobar">5</label>
+  <div class="field radio-questions">
+  <!-- generated radio buttons -->
   </div>
-</div>
 
+  <a class="button is-danger submit">
+    <span>Submit</span>
+  </a>
 
-    <a class="button is-danger">
-<!--       <span class="icon">
-        <i class="fas fa-id-card"></i>
-      </span> -->
-      <span>Submit</span>
-    </a>
-
-  </section>
+</section>
 
 
 
 <footer class="footer">
   <div class="container">
     <div class="content">
-      <a class="button is-small is-info submit" href="https://github.com/jstudenski/pretendFriend" target="_blank">
+      <a class="button is-small is-info" href="https://github.com/jstudenski/pretendFriend" target="_blank">
         <span class="icon is-small">
           <i class="fab fa-github"></i>
         </span>
@@ -96,27 +85,46 @@ Then find the friend with the greatest compatibility! -->
 
 <script type="text/javascript">
 
-    // In this code below we create the Front-end JavaScript which "POSTS" our form data to our express server.
-    // In essence, when the user hits submit, jQuery grabs all of the fields then sends a post request to our api
-    // Our api recognizes the route (/api/tables)... and then runs the associated code (found in api-routes.js).
-    // In this case the associated code "saves" the data to the table-data.js file or waitinglist-data.js file
+    // generate html
+    var questions = ['Question 1', 'Second Question', 'Question 2'];
+
+    for (var i = 0; i < questions.length; i++) {
+      $('.radio-questions').append(questions[i] + '<br>');
+      var name = 'question'+i;
+      for (var r = 1; r < 6; r++) {
+
+        var label = $('<label>')
+          .addClass('radio')
+          .html(r);
+        var input = $('<input type="radio">')
+          .attr('name', name)
+          .attr('value', r)
+          .appendTo(label);
+        label.appendTo($('.radio-questions'));
+
+        //$('.radio-questions').append('<label class="radio"><input type="radio" name="'+name+'" value="'+r+'">'+r+'</label>');
+
+
+       }
+      $('.radio-questions').append('<br>');
+    }
 
     $(".submit").on("click", function(event) {
       event.preventDefault();
 
-      // Here we grab the form elements
+      var responses = [];
+      for (var i = 0; i < questions.length; i++) {
+        responses.push(parseInt($('input[name='+'question'+ i +']:checked').val()));
+      }
+
       var newFriend = {
         name: $("#inputName").val().trim(),
         photo: $("#inputImage").val().trim(),
-        scores: $("#inputQuestion").val().trim()
+        scores: responses
       };
 
       console.log(newFriend);
 
-      // This line is the magic. It"s very similar to the standard ajax function we used.
-      // Essentially we give it a URL, we give it the object we want to send, then we have a "callback".
-      // The callback is the response of the server. In our case, we set up code in api-routes that "returns" true or false
-      // depending on if a tables is available or not.
 
       $.post("/api/friends", newFriend,
         function(data) {
