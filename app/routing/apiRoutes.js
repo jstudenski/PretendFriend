@@ -6,7 +6,27 @@ module.exports = function(app) {
     res.json(friendData);
   });
 
+// // Create New Reservation - takes in JSON input
+// app.post("/api/new", function(req, res) {
+
+//   var newReservation = req.body;
+
+//   console.log(newReservation);
+
+//   reservations.push(newReservation);
+
+//   res.json(newReservation);
+// });
+
+
+
   app.post("/api/friends", function(req, res) {
+
+    var newFriend = req.body;
+    console.log(newFriend);
+    friendData.push(newFriend);
+    res.json(friendData);
+    
     // Note the code here. Our "server" will respond to requests and let users know if they have a table or not.
     // It will do this by sending out the value "true" have a table
     // req.body is available since we're using the body-parser middleware

@@ -56,6 +56,19 @@ Then find the friend with the greatest compatibility! -->
     </div>
   </div>
 
+<!--   <a class="button is-danger ">
+    <span>Randomize</span>
+  </a>
+ -->
+<a class="button is-info is-small randomize">
+    <span class="icon">
+      <i class="fas fa-random"></i>
+    </span>
+    <span>Randomize</span>
+  </a>
+
+
+
   <div class="field radio-questions">
   <!-- generated radio buttons -->
   </div>
@@ -85,14 +98,13 @@ Then find the friend with the greatest compatibility! -->
 
 <script type="text/javascript">
 
-    // generate html
+    // generate questions html
     var questions = ['Question 1', 'Second Question', 'Question 2'];
-
     for (var i = 0; i < questions.length; i++) {
       $('.radio-questions').append(questions[i] + '<br>');
       var name = 'question'+i;
       for (var r = 1; r < 6; r++) {
-
+        // generate radio buttons
         var label = $('<label>')
           .addClass('radio')
           .html(r);
@@ -100,22 +112,35 @@ Then find the friend with the greatest compatibility! -->
           .attr('name', name)
           .attr('value', r)
           .appendTo(label);
+          if (r===3){input.prop('checked', true)}
         label.appendTo($('.radio-questions'));
-
-        //$('.radio-questions').append('<label class="radio"><input type="radio" name="'+name+'" value="'+r+'">'+r+'</label>');
-
-
        }
       $('.radio-questions').append('<br>');
     }
 
+    $(".randomize").on("click", function() {
+      var rand;
+      for (var i = 0; i < questions.length; i++) {
+        rand = Math.floor(Math.random() * Math.floor(5));
+        $('input:radio[name=question'+i+']')[rand].checked = true;
+      }
+    });
+
+
+
+
+
+
+    // submit button
     $(".submit").on("click", function(event) {
       event.preventDefault();
 
       var responses = [];
+
       for (var i = 0; i < questions.length; i++) {
         responses.push(parseInt($('input[name='+'question'+ i +']:checked').val()));
       }
+
 
       var newFriend = {
         name: $("#inputName").val().trim(),
