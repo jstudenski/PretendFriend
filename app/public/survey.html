@@ -12,35 +12,43 @@
     <script defer src="https://use.fontawesome.com/releases/v5.0.0/js/all.js"></script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chance/1.0.13/chance.min.js"></script>
+
+    
+
+
   </head>
   <body>
 
 <!-- 
 Then find the friend with the greatest compatibility! -->
 
-    <section class="hero is-info is-bold">
-      <div class="hero-body">
-        <div class="container">
-          <h1 class="title">
-            PretendFriend
-          </h1>
-          <h2 class="subtitle">
-         Survey
-          </h2>
-
-  </section>
+<section class="hero is-info is-bold">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        PretendFriend
+      </h1>
+      <h2 class="subtitle">
+     Survey
+      </h2>
+    </div>
+  </div>
+</section>
 
 
 
 
 <section class="section">
 
-  <div class="container">
+<!-- <div class="container">
     <h1 class="title">Section</h1>
     <h2 class="subtitle">
       A simple container to divide your page into <strong>sections</strong>, like the one you're currently reading
     </h2>
-  </div>
+  </div> container -->
 
   <div class="field">
     <label class="label">Name</label>
@@ -56,11 +64,8 @@ Then find the friend with the greatest compatibility! -->
     </div>
   </div>
 
-<!--   <a class="button is-danger ">
-    <span>Randomize</span>
-  </a>
- -->
-<a class="button is-info is-small randomize">
+
+  <a class="button is-info is-small randomize">
     <span class="icon">
       <i class="fas fa-random"></i>
     </span>
@@ -68,15 +73,18 @@ Then find the friend with the greatest compatibility! -->
   </a>
 
 
-
   <div class="field radio-questions">
-  <!-- generated radio buttons -->
+    <!-- generated radio buttons -->
   </div>
 
   <a class="button is-danger submit">
     <span>Submit</span>
   </a>
 
+</section>
+
+
+<section class="section results">
 </section>
 
 
@@ -124,7 +132,12 @@ Then find the friend with the greatest compatibility! -->
         rand = Math.floor(Math.random() * Math.floor(5));
         $('input:radio[name=question'+i+']')[rand].checked = true;
       }
+      
+      //console.log(Chance.first({ nationality: "us" }));
+      
+
     });
+
 
 
 
@@ -145,7 +158,7 @@ Then find the friend with the greatest compatibility! -->
       var newFriend = {
         name: $("#inputName").val().trim(),
         photo: $("#inputImage").val().trim(),
-        scores: responses
+        scores: responses// responses
       };
 
       console.log(newFriend);
@@ -164,6 +177,30 @@ Then find the friend with the greatest compatibility! -->
             alert("Sorry you are on the wait list");
           }
 
+
+          var currentURL = window.location.origin;
+            $.ajax({ url: currentURL + "/api/friends", method: "GET" }).then(function(friends) {
+
+              console.log(friends)
+
+              for (var i = 0; i < friends.length; i++) {
+
+                    $(".results").append(friends[i].name);
+
+                    $(".results").append(friends[i].scores);
+
+
+                    $(".results").append('<br>');
+
+              }
+
+            // }
+           });
+
+
+
+
+
           // Clear the form when submitting
           // $("#reserve-name").val("");
           // $("#reserve-phone").val("");
@@ -173,6 +210,27 @@ Then find the friend with the greatest compatibility! -->
         });
 
     });
+
+myArray = [3,2,1,5,1];
+computerArray = [4,2,1,2,3];
+
+function diffCheck(arr1, arr2){
+  // make sure arrays are the same length
+  if (arr1.length != arr2.length) {
+    throw "Arrays not the same length!";
+  }
+
+  var totalDiff = 0;
+
+  for (var i = 0; i < arr1.length; i++) {
+    totalDiff += Math.abs(arr1[i]-arr2[i]);
+  }
+
+  console.log(totalDiff);
+}
+
+diffCheck(myArray, computerArray);
+
 
 </script>
 

@@ -22,11 +22,13 @@ module.exports = function(app) {
 
   app.post("/api/friends", function(req, res) {
 
-    var newFriend = req.body;
-    console.log(newFriend);
-    friendData.push(newFriend);
+    //var newFriend = req.body;
+    //console.log(newFriend);
+    //friendData.push(newFriend);
+    //res.json(friendData);
+    console.log(req.body);
+    friendData.push(req.body);
     res.json(friendData);
-    
     // Note the code here. Our "server" will respond to requests and let users know if they have a table or not.
     // It will do this by sending out the value "true" have a table
     // req.body is available since we're using the body-parser middleware
@@ -44,11 +46,11 @@ module.exports = function(app) {
   // I added this below code so you could clear out the table while working with the functionality.
   // Don"t worry about it!
 
-  app.post("/api/clear", function() {
-    // Empty out the arrays of data
-    tableData = [];
-    waitListData = [];
+  // app.post("/api/clear", function() {
+  //   // Empty out the arrays of data
+  //   tableData = [];
+  //   waitListData = [];
 
-    console.log(tableData);
-  });
+  //   console.log(tableData);
+  // });
 };
