@@ -1,9 +1,14 @@
 var friendData = require("../data/friends");
+var randomNames = require("../data/randomNames");
 
 module.exports = function(app) {
 
   app.get("/api/friends", function(req, res) {
     res.json(friendData);
+  });
+
+  app.get("/api/random", function(req, res) {
+    res.json(randomNames);
   });
 
 // // Create New Reservation - takes in JSON input

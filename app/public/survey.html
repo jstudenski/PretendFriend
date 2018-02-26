@@ -106,6 +106,39 @@ Then find the friend with the greatest compatibility! -->
 
 <script type="text/javascript">
 
+
+
+
+
+
+function randomName() {
+  var currentURL = window.location.origin;
+  $.ajax({
+      url: currentURL + "/api/random",
+      method: "GET"
+  }).then(function(names) {
+
+      var male = names.firstNames.male
+      var female = names.firstNames.female
+
+      var firstname;
+      var lastname = names.lastNames[Math.floor(Math.random() * names.lastNames.length)];
+
+      if ((Math.floor(Math.random() * 2) === 1)) {
+        firstname = male[Math.floor(Math.random() * male.length)];
+      } else {
+        firstname = female[Math.floor(Math.random() * female.length)];
+      }
+
+      //return ("firstname + " " +lastname");
+      return "Hello ";
+
+  });
+}
+    
+
+
+
     // generate questions html
     var questions = ['Question 1', 'Second Question', 'Question 2'];
     for (var i = 0; i < questions.length; i++) {
@@ -132,7 +165,9 @@ Then find the friend with the greatest compatibility! -->
         rand = Math.floor(Math.random() * Math.floor(5));
         $('input:radio[name=question'+i+']')[rand].checked = true;
       }
-      
+
+      console.log(randomName());
+     $("#inputName").val();
       //console.log(Chance.first({ nationality: "us" }));
       
 
@@ -193,13 +228,7 @@ Then find the friend with the greatest compatibility! -->
                     $(".results").append('<br>');
 
               }
-
-            // }
            });
-
-
-
-
 
           // Clear the form when submitting
           // $("#reserve-name").val("");
