@@ -113,6 +113,9 @@ Then find the friend with the greatest compatibility! -->
 
 function randomName() {
   var currentURL = window.location.origin;
+
+  var firstname;
+  var lastname;
   $.ajax({
       url: currentURL + "/api/random",
       method: "GET"
@@ -121,57 +124,66 @@ function randomName() {
       var male = names.firstNames.male
       var female = names.firstNames.female
 
-      var firstname;
+     // var firstname;
       var lastname = names.lastNames[Math.floor(Math.random() * names.lastNames.length)];
 
       if ((Math.floor(Math.random() * 2) === 1)) {
         firstname = male[Math.floor(Math.random() * male.length)];
+
       } else {
         firstname = female[Math.floor(Math.random() * female.length)];
+
       }
-
-      //return ("firstname + " " +lastname");
-      return "Hello ";
-
+      console.log("333" + firstname+lastname)
+      return 2;
+     // 
   });
+        console.log("111");
+
+        console.log("222");
 }
     
 
+// function hasReturn() {
+//   return "hello!";
+// }
+//console.log( randomName() );
+// "hello!"
+
+// generate questions html
+var questions = ['Question 1', 'Second Question', 'Question 2'];
+for (var i = 0; i < questions.length; i++) {
+  $('.radio-questions').append(questions[i] + '<br>');
+  var name = 'question'+i;
+  for (var r = 1; r < 6; r++) {
+    // generate radio buttons
+    var label = $('<label>')
+      .addClass('radio')
+      .html(r);
+    var input = $('<input type="radio">')
+      .attr('name', name)
+      .attr('value', r)
+      .appendTo(label);
+      if (r===3){input.prop('checked', true)}
+    label.appendTo($('.radio-questions'));
+   }
+  $('.radio-questions').append('<br>');
+}
 
 
-    // generate questions html
-    var questions = ['Question 1', 'Second Question', 'Question 2'];
-    for (var i = 0; i < questions.length; i++) {
-      $('.radio-questions').append(questions[i] + '<br>');
-      var name = 'question'+i;
-      for (var r = 1; r < 6; r++) {
-        // generate radio buttons
-        var label = $('<label>')
-          .addClass('radio')
-          .html(r);
-        var input = $('<input type="radio">')
-          .attr('name', name)
-          .attr('value', r)
-          .appendTo(label);
-          if (r===3){input.prop('checked', true)}
-        label.appendTo($('.radio-questions'));
-       }
-      $('.radio-questions').append('<br>');
-    }
+$(".randomize").on("click", function() {
+  var rand;
+  for (var i = 0; i < questions.length; i++) {
+    rand = Math.floor(Math.random() * Math.floor(5));
+    $('input:radio[name=question'+i+']')[rand].checked = true;
+  }
 
-    $(".randomize").on("click", function() {
-      var rand;
-      for (var i = 0; i < questions.length; i++) {
-        rand = Math.floor(Math.random() * Math.floor(5));
-        $('input:radio[name=question'+i+']')[rand].checked = true;
-      }
+ // var stateName = ;
+  console.log(randomName());
+ $("#inputName").val();
+  //console.log(Chance.first({ nationality: "us" }));
 
-      console.log(randomName());
-     $("#inputName").val();
-      //console.log(Chance.first({ nationality: "us" }));
-      
-
-    });
+});
 
 
 
