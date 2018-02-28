@@ -116,7 +116,7 @@ function randomName() {
 
   var firstname;
   var lastname;
-  $.ajax({
+  return $.ajax({
       url: currentURL + "/api/random",
       method: "GET"
   }).then(function(names) {
@@ -134,13 +134,13 @@ function randomName() {
         firstname = female[Math.floor(Math.random() * female.length)];
 
       }
-      console.log("333" + firstname+lastname)
-      return firstname+lastname;
+      //console.log("333 " + firstname+lastname)
+      return firstname+" "+lastname;
      // 
   });
-        console.log("111");
+        //console.log("111");
 
-        console.log("222");
+       // console.log("222");
 }
     
 
@@ -179,9 +179,13 @@ $(".randomize").on("click", function() {
   }
 
  // var stateName = ;
-  console.log(randomName());
- $("#inputName").val();
+  //console.log(randomName());
+ //$("#inputName").val("123");
   //console.log(Chance.first({ nationality: "us" }));
+  randomName()
+    .then(function (name) {
+      $('#inputName').val(name);
+    })
 
 });
 
