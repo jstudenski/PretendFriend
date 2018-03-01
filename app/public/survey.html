@@ -1,26 +1,22 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Hello Bulma!</title>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hello Bulma!</title>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
 
-    <link href="style.css" rel="stylesheet" type="text/css">
+  <link href="style.css" rel="stylesheet" type="text/css">
 
-    <script defer src="https://use.fontawesome.com/releases/v5.0.0/js/all.js"></script>
+  <script defer src="https://use.fontawesome.com/releases/v5.0.0/js/all.js"></script>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/chance/1.0.13/chance.min.js"></script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/chance/1.0.13/chance.min.js"></script>
-
-    
-
-
-  </head>
-  <body>
+</head>
+<body>
 
 <!-- 
 Then find the friend with the greatest compatibility! -->
@@ -63,6 +59,8 @@ Then find the friend with the greatest compatibility! -->
       <input class="input" type="text" placeholder="Text input" id="inputImage">
     </div>
   </div>
+
+  <div id="image"></div>
 
 
   <a class="button is-info is-small randomize">
@@ -114,8 +112,7 @@ Then find the friend with the greatest compatibility! -->
 function randomName() {
   var currentURL = window.location.origin;
 
-  var firstname;
-  var lastname;
+
   return $.ajax({
       url: currentURL + "/api/random",
       method: "GET"
@@ -124,23 +121,21 @@ function randomName() {
       var male = names.firstNames.male
       var female = names.firstNames.female
 
-     // var firstname;
-      var lastname = names.lastNames[Math.floor(Math.random() * names.lastNames.length)];
+      var character = {};
 
       if ((Math.floor(Math.random() * 2) === 1)) {
-        firstname = male[Math.floor(Math.random() * male.length)];
-
+        character.firstname = male[Math.floor(Math.random() * male.length)];
+        character.gender = "male";
       } else {
-        firstname = female[Math.floor(Math.random() * female.length)];
-
+        character.firstname = female[Math.floor(Math.random() * female.length)];
+        character.gender = "female";
       }
-      //console.log("333 " + firstname+lastname)
-      return firstname+" "+lastname;
-     // 
-  });
-        //console.log("111");
+      character.lastname = names.lastNames[Math.floor(Math.random() * names.lastNames.length)];
 
-       // console.log("222");
+      return character
+
+     // firstname+" "+lastname;
+  });
 }
     
 
@@ -183,8 +178,10 @@ $(".randomize").on("click", function() {
  //$("#inputName").val("123");
   //console.log(Chance.first({ nationality: "us" }));
   randomName()
-    .then(function (name) {
-      $('#inputName').val(name);
+    .then(function (character) {
+      $('#inputName').val(character.firstname +" "+character.lastname);
+      console.log(character.gender)
+      $('#image').html('test');
     })
 
 });
@@ -271,7 +268,7 @@ function diffCheck(arr1, arr2){
     totalDiff += Math.abs(arr1[i]-arr2[i]);
   }
 
-  console.log(totalDiff);
+  //console.log(totalDiff);
 }
 
 diffCheck(myArray, computerArray);
