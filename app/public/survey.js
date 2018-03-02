@@ -1,62 +1,5 @@
-<section class="section">
-
-<!-- <div class="container">
-    <h1 class="title">Section</h1>
-    <h2 class="subtitle">
-      A simple container to divide your page into <strong>sections</strong>, like the one you're currently reading
-    </h2>
-  </div> container -->
-
-  <div class="field">
-    <label class="label">Name</label>
-    <div class="control">
-      <input class="input" type="text" placeholder="Text input" id="inputName">
-    </div>
-  </div>
-
-  <div class="field">
-    <label class="label">Image URL</label>
-    <div class="control">
-      <input class="input" type="text" placeholder="Text input" id="inputImage">
-    </div>
-  </div>
-
-  <div id="image"></div>
-
-
-  <a class="button is-info is-small randomize">
-    <span class="icon">
-      <i class="fas fa-random"></i>
-    </span>
-    <span>Randomize</span>
-  </a>
-
-
-  <div class="field radio-questions">
-    <!-- generated radio buttons -->
-  </div>
-
-  <a class="button is-danger submit">
-    <span>Submit</span>
-  </a>
-
-</section>
-
-
-<section class="section results">
-</section>
-
-
-
-
-<script src="survey.js"></script>
-
-<script type="text/javascript">
-
-
 function randomName() {
   var currentURL = window.location.origin;
-
 
   return $.ajax({
       url: currentURL + "/api/random",
@@ -81,12 +24,6 @@ function randomName() {
 
   });
 }
-
-// function hasReturn() {
-//   return "hello!";
-// }
-//console.log( randomName() );
-// "hello!"
 
 // generate questions html
 var questions = ['Question 1', 'Second Question', 'Question 2'];
@@ -136,12 +73,6 @@ $(".randomize").on("click", function() {
     })
 
 });
-
-
-
-
-
-
 
 
 
@@ -225,6 +156,3 @@ function diffCheck(arr1, arr2){
 }
 
 diffCheck(myArray, computerArray);
-
-
-</script>
