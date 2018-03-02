@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Hello Bulma!</title>
+  <title>Pretend Friends!</title>
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
 
@@ -35,6 +35,34 @@ Then find the friend with the greatest compatibility! -->
 </section>
 
 
+
+
+
+
+<!-- <div class="card">
+  <div class="card-content">
+    <p class="title">
+      “There are two hard things in computer science: cache invalidation, naming things, and off-by-one errors.”
+    </p>
+    <p class="subtitle">
+      Jeff Atwood
+    </p>
+  </div>
+  <footer class="card-footer">
+    <p class="card-footer-item">
+      <span>
+        View on <a href="https://twitter.com/codinghorror/status/506010907021828096">Twitter</a>
+      </span>
+    </p>
+    <p class="card-footer-item">
+      <span>
+        Share on <a href="#">Facebook</a>
+      </span>
+    </p>
+  </footer>
+</div>
+
+ -->
 
 
 <section class="section">
@@ -134,10 +162,8 @@ function randomName() {
 
       return character
 
-     // firstname+" "+lastname;
   });
 }
-    
 
 // function hasReturn() {
 //   return "hello!";
@@ -165,6 +191,9 @@ for (var i = 0; i < questions.length; i++) {
   $('.radio-questions').append('<br>');
 }
 
+function randomNum(min, max){
+  return Math.floor(Math.random()*(max-min+1)+min);
+}
 
 $(".randomize").on("click", function() {
   var rand;
@@ -173,18 +202,25 @@ $(".randomize").on("click", function() {
     $('input:radio[name=question'+i+']')[rand].checked = true;
   }
 
- // var stateName = ;
-  //console.log(randomName());
- //$("#inputName").val("123");
-  //console.log(Chance.first({ nationality: "us" }));
   randomName()
     .then(function (character) {
       $('#inputName').val(character.firstname +" "+character.lastname);
-      console.log(character.gender)
-      $('#image').html('test');
+      console.log()
+
+      var randomImgNum = (character.gender === "male" ? randomNum(1,15) : randomNum(16,30));
+
+      var img = $('<img>');
+      img.attr('src', 'images/people_'+randomImgNum+'.png');
+      img.css('width', '100px');
+      $('#image').html(img);
+
+      //.appendTo('#image');
+
     })
 
 });
+
+
 
 
 
