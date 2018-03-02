@@ -1,4 +1,5 @@
-var express = require("express");
+var express = require('express');
+var exphbs  = require('express-handlebars');
 var bodyParser = require("body-parser");
 var path = require("path");
 
@@ -10,6 +11,11 @@ var PORT = process.env.PORT || 3000;
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static('app/public'));
+
+// Sets template to handlebars
+app.engine('handlebars', exphbs({defaultLayout: 'main'}));
+app.set('view engine', 'handlebars');
+
 
 require("./app/routing/apiRoutes")(app);
 require("./app/routing/htmlRoutes")(app);
