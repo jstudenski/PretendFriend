@@ -26,7 +26,7 @@ function randomName() {
 }
 
 // generate questions html
-var questions = ['Question 1', 'Question 2', 'Question 3'];
+var questions = ['Question 1', 'Question 2', 'Question 3', 'Question 4', 'Question 5', 'Question 6', 'Question 7', 'Question 8', 'Question 9', 'Question 10',];
 for (var i = 0; i < questions.length; i++) {
   $('.radio-questions').append(questions[i] + '<br>');
   var name = 'question' + i;
@@ -85,6 +85,7 @@ $(".submit").on("click", function(event) {
 
   for (var i = 0; i < questions.length; i++) {
     responses.push(parseInt($('input[name=' + 'question' + i + ']:checked').val()));
+
   }
 
   var newFriend = {
@@ -93,7 +94,7 @@ $(".submit").on("click", function(event) {
     scores: responses // responses
   };
 
-  console.log(newFriend);
+  //console.log(newFriend);
 
   $.post("/api/friends", newFriend,
   function(data) {
@@ -111,20 +112,35 @@ $(".submit").on("click", function(event) {
       $('#myModal').show();
       $('.modal-body').html('');
 
-      console.log(friends)
+      //console.log(friends)
 
       for (var i = 0; i < friends.length; i++) {
-         $('.modal-body').append(friends[i].name);
-         $('.modal-body').append(friends[i].scores);
-      
 
+       // console.log(newFriend.name);
+       //console.log( diffCheck(friends[i].scores, newFriend.scores));
+
+        $('.modal-body').append(friends[i].name);
+        $('.modal-body').append(friends[i].scores);
+
+        var userScore = newFriend.scores;
+        var databaseScore = friends[i].scores;       
+
+        // if (userScore.length != databaseScore.length) {
+        //   throw "Arrays not the same length!";
+        // }
+        console.log(userScore.length)
+        console.log(databaseScore.length)
+
+
+    
         var img = $('<img>');
         img.attr('src', friends[i].photo);
         img.css('width', '100px');
         $('.modal-body').append('<br>');         
         $('.modal-body').append(img);
         $('.modal-body').append('<br>');
-        
+        $('.modal-body').append('<br>');
+
       }
 
     });
@@ -134,8 +150,8 @@ $(".submit").on("click", function(event) {
 });
 
 
-myArray = [3, 2, 1, 5, 1];
-computerArray = [4, 2, 1, 2, 3];
+// myArray = [3, 2, 1, 5, 1];
+// computerArray = [4, 2, 1, 2, 3];
 
 function diffCheck(arr1, arr2) {
   // make sure arrays are the same length
@@ -149,10 +165,10 @@ function diffCheck(arr1, arr2) {
     totalDiff += Math.abs(arr1[i] - arr2[i]);
   }
 
-  //console.log(totalDiff);
+  return totalDiff;
 }
 
-diffCheck(myArray, computerArray);
+//diffCheck(myArray, computerArray);
 
 
 
