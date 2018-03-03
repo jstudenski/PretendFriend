@@ -4,8 +4,8 @@
 
 <a href="https://fontawesome.com/">Font Awesome</a> <br>
 <a href="https://bulma.io/">Bulma</a> <br>
-<a href="https://handlebarsjs.com/">Handlebars JS</a> <br>
-<a href="https://expressjs.com/">Express JS</a> <br>
+<a href="https://handlebarsjs.com/">Handlebars</a> <br>
+<a href="https://expressjs.com/">Express</a> <br>
 
 <br>
 <br>

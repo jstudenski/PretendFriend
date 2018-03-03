@@ -60,17 +60,16 @@ $(".randomize").on("click", function() {
 
   randomName()
     .then(function(character) {
-      $('#inputName').val(character.firstname + " " + character.lastname);
-      console.log()
 
       var randomImgNum = (character.gender === "male" ? randomNum(1, 15) : randomNum(16, 30));
+
+      $('#inputName').val(character.firstname + " " + character.lastname);
+      $('#inputImage').val('images/people_' + randomImgNum + '.png');
 
       var img = $('<img>');
       img.attr('src', 'images/people_' + randomImgNum + '.png');
       img.css('width', '100px');
       $('#image').html(img);
-
-      //.appendTo('#image');
 
     })
 
@@ -97,16 +96,12 @@ $(".submit").on("click", function(event) {
 
   console.log(newFriend);
 
-
   $.post("/api/friends", newFriend,
     function(data) {
 
-      // If a table is available... tell user they are booked.
       if (data) {
-       // alert("Yay! You are officially booked!");
+       // alert("Yay! You have added a friend!");
       }
-
-
 
       var currentURL = window.location.origin;
       $.ajax({
@@ -121,7 +116,6 @@ $(".submit").on("click", function(event) {
           $(".results").append(friends[i].name);
 
           $(".results").append(friends[i].scores);
-
 
           $(".results").append('<br>');
 
@@ -153,29 +147,21 @@ function diffCheck(arr1, arr2) {
 
 diffCheck(myArray, computerArray);
 
-// Get the modal
+
+
+$('#myBtn').click(function() {
+  $('#myModal').show();
+});
+
+$('.close').click(function() {
+  $('#myModal').hide();
+});
+
 var modal = document.getElementById('myModal');
 
-// Get the button that opens the modal
-var btn = document.getElementById("myBtn");
-
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
-
-// When the user clicks on the button, open the modal 
-btn.onclick = function() {
-    modal.style.display = "block";
-}
-
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-    modal.style.display = "none";
-}
-
-// When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
-    }
+  if (event.target == modal) {
+    $('#myModal').hide();
+  }
 }
 
