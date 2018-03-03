@@ -26,7 +26,7 @@ function randomName() {
 }
 
 // generate questions html
-var questions = ['Question 1', 'Second Question', 'Question 2'];
+var questions = ['Question 1', 'Question 2', 'Question 3'];
 for (var i = 0; i < questions.length; i++) {
   $('.radio-questions').append(questions[i] + '<br>');
   var name = 'question' + i;
