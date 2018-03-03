@@ -2,12 +2,22 @@ body {
 /*  background-color: salmon;*/
 }
 
-.footer {
-  padding: 1.5rem;
-  bottom: 0;
-  position: absolute;
-  width: 100%;
-}
 .body {
   margin-top: 1.5rem;
+}
+
+#image {
+  width: 100px;
+  height: 118px;
+  border: 1px solid #e0e0e0;
+  border-radius: 2px;
+}
+
+.footer {
+  padding: 1rem;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
 }
