@@ -100,7 +100,7 @@ $(".submit").on("click", function(event) {
   function(data) {
 
     if (data) {
-     // alert("Yay! You have added a friend!");
+     console.log('new friend added');
     }
 
     var currentURL = window.location.origin;
@@ -108,46 +108,58 @@ $(".submit").on("click", function(event) {
       url: currentURL + "/api/friends",
       method: "GET"
     }).then(function(friends) {
-
-      $('#myModal').show();
-      $('.modal-body').html('');
-
-      //console.log(friends)
-
-      for (var i = 0; i < friends.length; i++) {
-
-       // console.log(newFriend.name);
-       //console.log( diffCheck(friends[i].scores, newFriend.scores));
-
-        $('.modal-body').append(friends[i].name);
-        $('.modal-body').append(friends[i].scores);
-
-        var userScore = newFriend.scores;
-        var databaseScore = friends[i].scores;       
-
-        // if (userScore.length != databaseScore.length) {
-        //   throw "Arrays not the same length!";
-        // }
-        console.log(userScore.length)
-        console.log(databaseScore.length)
-
-
-    
-        var img = $('<img>');
-        img.attr('src', friends[i].photo);
-        img.css('width', '100px');
-        $('.modal-body').append('<br>');         
-        $('.modal-body').append(img);
-        $('.modal-body').append('<br>');
-        $('.modal-body').append('<br>');
-
-      }
-
+      displayResults(friends, newFriend)
     });
 
   });
 
 });
+
+
+function displayResults(friends, newFriend){
+  $('#myModal').show(); 
+  $('.modal-body').html('');
+
+  for (var i = 0; i < friends.length; i++) {
+
+    // console.log(newFriend.name);
+    //console.log( diffCheck(friends[i].scores, newFriend.scores));
+
+    $('.modal-body').append(friends[i].name);
+    $('.modal-body').append(friends[i].scores);
+
+    var userScore = newFriend.scores;
+    var databaseScore = friends[i].scores;       
+
+    var totalDiff = 0;
+
+    console.log(userScore.length)
+
+    // for (var i = 0; i < databaseScore.length; i++) {
+    //   //console.log();
+    //   console.log(databaseScore[i])
+    //   //totalDiff += Math.abs(userScore[i] - databaseScore[i]);
+    // }
+
+    //  console.log(totalDiff);
+
+    // if (userScore.length != databaseScore.length) {
+    //   throw "Arrays not the same length!";
+    // }
+    console.log(userScore.length)
+    console.log(databaseScore.length)
+
+    var img = $('<img>');
+    img.attr('src', friends[i].photo);
+    img.css('width', '100px');
+    $('.modal-body').append('<br>');         
+    $('.modal-body').append(img);
+    $('.modal-body').append('<br>');
+    $('.modal-body').append('<br>');
+
+  }
+
+}
 
 
 // myArray = [3, 2, 1, 5, 1];
