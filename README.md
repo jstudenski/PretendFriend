@@ -10,5 +10,6 @@
 <br>
 <br>
 
-<a href="http://www.freepik.com">Avatars designed by Graphicrepublic</a>
+
+Avatars designed by<a href="https://www.freepik.com/graphicrepublic"> Graphicrepublic</a>
 
