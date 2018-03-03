@@ -103,13 +103,9 @@ $(".submit").on("click", function(event) {
 
       // If a table is available... tell user they are booked.
       if (data) {
-        alert("Yay! You are officially booked!");
+       // alert("Yay! You are officially booked!");
       }
 
-      // If a table is available... tell user they on the waiting list.
-      else {
-        alert("Sorry you are on the wait list");
-      }
 
 
       var currentURL = window.location.origin;
@@ -141,6 +137,7 @@ $(".submit").on("click", function(event) {
     });
 
 });
+
 
 myArray = [3, 2, 1, 5, 1];
 computerArray = [4, 2, 1, 2, 3];
