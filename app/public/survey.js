@@ -127,7 +127,6 @@ $(".submit").on("click", function(event) {
 
         }
       });
-
       // Clear the form when submitting
       // $("#reserve-name").val("");
       // $("#reserve-phone").val("");
