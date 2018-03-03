@@ -1,13 +1,13 @@
-/*.footer {
-  position: absolute;
-  padding: 1rem;
-  width: 100%;
-}*/
-
 body {
-  background-color: salmon;
+/*  background-color: salmon;*/
 }
 
-footer {
+.footer {
   padding: 1.5rem;
+  bottom: 0;
+  position: absolute;
+  width: 100%;
+}
+.body {
+  margin-top: 1.5rem;
 }
