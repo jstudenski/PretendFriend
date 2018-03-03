@@ -1,10 +1,7 @@
 ## Pretend Friend
 [Live Site](https://pretend-friend.herokuapp.com/)
 
-<img src="README/people_7.png" alt="low" width="150">
-<img src="README/people_12.png" alt="low" width="150">
-<img src="README/people_22.png" alt="low" width="150">
-<img src="README/people_25.png" alt="low" width="150">
+<img src="README/people_7.png" alt="low" width="75"><img src="README/people_12.png" alt="low" width="75"><img src="README/people_22.png" alt="low" width="75"><img src="README/people_25.png" alt="low" width="75">
 
 ### Run
 node server.js
