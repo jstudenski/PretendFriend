@@ -87,7 +87,6 @@ $(".submit").on("click", function(event) {
     responses.push(parseInt($('input[name=' + 'question' + i + ']:checked').val()));
   }
 
-
   var newFriend = {
     name: $("#inputName").val().trim(),
     photo: $("#inputImage").val().trim(),
@@ -97,32 +96,40 @@ $(".submit").on("click", function(event) {
   console.log(newFriend);
 
   $.post("/api/friends", newFriend,
-    function(data) {
+  function(data) {
 
-      if (data) {
-       // alert("Yay! You have added a friend!");
+    if (data) {
+     // alert("Yay! You have added a friend!");
+    }
+
+    var currentURL = window.location.origin;
+    $.ajax({
+      url: currentURL + "/api/friends",
+      method: "GET"
+    }).then(function(friends) {
+
+      $('#myModal').show();
+      $('.modal-body').html('');
+
+      console.log(friends)
+
+      for (var i = 0; i < friends.length; i++) {
+         $('.modal-body').append(friends[i].name);
+         $('.modal-body').append(friends[i].scores);
+      
+
+        var img = $('<img>');
+        img.attr('src', friends[i].photo);
+        img.css('width', '100px');
+        $('.modal-body').append('<br>');         
+        $('.modal-body').append(img);
+        $('.modal-body').append('<br>');
+        
       }
 
-      var currentURL = window.location.origin;
-      $.ajax({
-        url: currentURL + "/api/friends",
-        method: "GET"
-      }).then(function(friends) {
-
-        console.log(friends)
-
-        for (var i = 0; i < friends.length; i++) {
-
-          $(".results").append(friends[i].name);
-
-          $(".results").append(friends[i].scores);
-
-          $(".results").append('<br>');
-
-        }
-      });
-
     });
+
+  });
 
 });
 
@@ -151,6 +158,7 @@ diffCheck(myArray, computerArray);
 
 $('#myBtn').click(function() {
   $('#myModal').show();
+  $('.modal-body').html("hello!");
 });
 
 $('.close').click(function() {
