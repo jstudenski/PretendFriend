@@ -28,7 +28,6 @@ body {
 
 
 
-
 .modal {
   display: none;
   position: fixed;
@@ -42,7 +41,6 @@ body {
   background-color: rgba(0,0,0,0.4);
 }
 
-
 .modal-content {
   background-color: #fefefe;
   margin: 15% auto;
@@ -50,7 +48,6 @@ body {
   border: 1px solid #888;
   width: 80%;
 }
-
 
 .close {
   color: #aaa;
