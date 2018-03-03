@@ -26,6 +26,14 @@ body {
   margin-bottom: 100px;
 }
 
+#inputName {
+  width: 200px;
+}
+
+#inputImage {
+  width: 500px;
+}
+
 .modal {
   display: none;
   position: fixed;
