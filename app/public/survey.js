@@ -100,7 +100,8 @@ $(".submit").on("click", function(event) {
   function(data) {
 
     if (data) {
-     console.log('new friend added');
+      console.log('new friend added');
+      console.log(newFriend);    
     }
 
     var currentURL = window.location.origin;
@@ -117,47 +118,48 @@ $(".submit").on("click", function(event) {
 
 
 function displayResults(friends, newFriend){
-  $('#myModal').show(); 
-  $('.modal-body').html('');
 
-  for (var i = 0; i < friends.length; i++) {
 
-    // console.log(newFriend.name);
-    //console.log( diffCheck(friends[i].scores, newFriend.scores));
+  var userScore = newFriend.scores;
 
-    $('.modal-body').append(friends[i].name);
-    $('.modal-body').append(friends[i].scores);
 
-    var userScore = newFriend.scores;
-    var databaseScore = friends[i].scores;       
+  var bestFriend = {};
+  var bestFriendScore = 99;
+  var bfIndex;
 
-    var totalDiff = 0;
+  for (var i = 0; i < friends.length-1; i++){ // subtract 1 so user score isn't compared to themselves     
 
-    console.log(userScore.length)
+    var databaseScore = friends[i].scores; 
 
-    // for (var i = 0; i < databaseScore.length; i++) {
-    //   //console.log();
-    //   console.log(databaseScore[i])
-    //   //totalDiff += Math.abs(userScore[i] - databaseScore[i]);
-    // }
+    var checkScore = diffCheck(userScore, databaseScore)
 
-    //  console.log(totalDiff);
+    if (checkScore < bestFriendScore) {
+      bestFriendScore = checkScore;
 
-    // if (userScore.length != databaseScore.length) {
-    //   throw "Arrays not the same length!";
-    // }
-    console.log(userScore.length)
-    console.log(databaseScore.length)
-
-    var img = $('<img>');
-    img.attr('src', friends[i].photo);
-    img.css('width', '100px');
-    $('.modal-body').append('<br>');         
-    $('.modal-body').append(img);
-    $('.modal-body').append('<br>');
-    $('.modal-body').append('<br>');
+      console.log(bestFriendScore);
+      console.log(friends[i].name);
+      bfIndex = i
+    }
 
   }
+
+  // console.log("INDEX" + bfIndex);
+
+  $('#myModal').show(); 
+  $('.modal-body').html('');
+  $('.modal-body').append("Here's your new best friend!<br>");
+
+
+  //$('.modal-body').append(friends[bfIndex].scores);
+
+  var img = $('<img>');
+  img.attr('src', friends[bfIndex].photo);
+  img.css('width', '100px');
+  $('.modal-body').append('<br>');         
+  $('.modal-body').append(img);
+  $('.modal-body').append('<br>');
+  $('.modal-body').append(friends[bfIndex].name);
+  $('.modal-body').append('<br>');
 
 }
 
@@ -167,9 +169,9 @@ function displayResults(friends, newFriend){
 
 function diffCheck(arr1, arr2) {
   // make sure arrays are the same length
-  if (arr1.length != arr2.length) {
-    throw "Arrays not the same length!";
-  }
+  // if (arr1.length != arr2.length) {
+  //   throw "Arrays not the same length!";
+  // }
 
   var totalDiff = 0;
 
