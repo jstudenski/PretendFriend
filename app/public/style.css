@@ -6,6 +6,12 @@ body {
   margin-top: 1.5rem;
 }
 
+.title {
+  font-family: 'Concert One', cursive;
+  font-size: 36px;
+}
+
+
 #image {
   width: 100px;
   height: 118px;
@@ -70,3 +76,4 @@ body {
   text-decoration: none;
   cursor: pointer;
 }
+
