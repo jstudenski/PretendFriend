@@ -18,7 +18,8 @@ This web application takes in the results from a user survey, then compare their
 
 <br>
 
-<img src="README/randomize.gif" alt="Randomize previeww" width="500">
+<img src="README/randomize.gif" alt="Randomize preview" width="415">
+<img src="README/submit.gif" alt="Get freiend preview" width="415">
 
 <br>
 <br>
