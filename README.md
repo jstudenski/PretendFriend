@@ -18,7 +18,7 @@ This web application takes in the results from a user survey, then compare their
 
 <br>
 
-### Add out indformation, or generate a profile at random! 
+### Add your info, or generate a profile at random! 
 
 <img src="README/randomize.gif" alt="Randomize preview" width="500">
 
