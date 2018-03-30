@@ -17,6 +17,9 @@ This web application takes in the results from a user survey, then compare their
 * <a href="https://fontawesome.com/">Font Awesome</a> - icons designed for the web <br>
 
 <br>
+
+<img src="README/randomize.gif" alt="Randomize previeww" width="500">
+
 <br>
 <br>
 
