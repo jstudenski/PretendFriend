@@ -18,7 +18,12 @@ This web application takes in the results from a user survey, then compare their
 
 <br>
 
+### Add out indformation, or generate a profile at random! 
+
 <img src="README/randomize.gif" alt="Randomize preview" width="500">
+
+### Get matched!
+
 <img src="README/submit.gif" alt="Get freiend preview" width="500">
 
 <br>
